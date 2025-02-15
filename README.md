@@ -58,7 +58,15 @@ sequenceDiagram
 <br>
 <ol>
 <li>Create Static mut Game Object</li>
-<li>RefCell< T > and the Interior Mutablilly Pattern</li>
+<li>set interface function(closure) for requetsAnimationFrame in first <br> 👍RefCell< T > and the Interior Mutablilly Pattern</li>
 <li>reguestAnimationFrame(callback)</li>
+<li>set interface function(closure) for requestAnimationFrame in loop</li>
+<li>reguestAnimationFrame(callback)</li>
+<li>game update</li>
+<li>game draw</li>
+<li>set interface function(closure) for MouseEvent at MouseDown</li>
+<li>MouseEvent(callback)</li>
+<li>game set click position</li>
+<li>👍forget() to keep interface function(closure)</li>
 </ol>
 
