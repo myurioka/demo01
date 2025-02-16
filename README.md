@@ -50,23 +50,23 @@ sequenceDiagram
     R->>H: Closure::wrap(Box::new(|MouseEvnet|)())
     note over H: add_event_listner_with_callback("mousedown")
     alt callback GAME.on_click
+    H->>H: forget()
     B->>H: callback
     H->>H: Game.on_click
-    H->>H: forget()
     end
 ```
 <br>
 <ol>
-<li>Create Static mut Game Object</li>
-<li>set interface function(closure) for requetsAnimationFrame in first <br> 👍RefCell< T > and the Interior Mutablilly Pattern</li>
-<li>reguestAnimationFrame(callback)</li>
+<li>Create Static mut Game Object👍</li>
+<li>set interface function(closure) for requetsAnimationFrame in first <br/> unsafe {Game.on_animation_frame}👍<br>RefCell< T > and the Interior Mutablilly Pattern👍</li>
+<li>reguestAnimationFrame(callback) in first</li>
 <li>set interface function(closure) for requestAnimationFrame in loop</li>
-<li>reguestAnimationFrame(callback)</li>
+<li>reguestAnimationFrame(callback) in loop</li>
 <li>game update</li>
 <li>game draw</li>
-<li>set interface function(closure) for MouseEvent at MouseDown</li>
+<li>set interface function(closure) for MouseEvent at MouseDown<br/>unsafe {Game.on_click}</li>
+<li>forget() to keep interface function(closure)👍</li>
 <li>MouseEvent(callback)</li>
 <li>game set click position</li>
-<li>👍forget() to keep interface function(closure)</li>
 </ol>
 
