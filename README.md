@@ -34,21 +34,18 @@ sequenceDiagram
     participant B as Browser
     participant H as heap
     participant R as Rust
-
     R->>H: static mut Box<Game>
     note over H: Game
-    R->>H: Glosure::wrap(Box::new(|_time:f64|()))
-    note over H: requestAnimationFrame(First)
-    B->>H: callback
-    R->>H: Glosure::wrap(Box::new(|_time:f64|()))
+    R->>H: Closure::wrap(Box::new(|_time:f64|()))
+    H->>B: requestnimation()
     loop callback GAME.on_animation_frame
     B->>H: callback
-    note over H: requestAnimationFrame
     H->>H: Game.update()
     H->>H: Game.draw()
+    H->>B: requestnimation()
     end
     R->>H: Closure::wrap(Box::new(|MouseEvnet|)())
-    note over H: add_event_listner_with_callback("mousedown")
+    H->>B: add_event_listner_with_callback("mousedown")
     alt callback GAME.on_click
     H->>H: forget()
     B->>H: callback
@@ -58,13 +55,14 @@ sequenceDiagram
 <br>
 <ol>
 <li>Create Static mut Game Object👍</li>
-<li>set interface function(closure) for requetsAnimationFrame in first <br/> unsafe {Game.on_animation_frame}👍<br>RefCell< T > and the Interior Mutablilly Pattern👍</li>
-<li>reguestAnimationFrame(callback) in first</li>
-<li>set interface function(closure) for requestAnimationFrame in loop</li>
-<li>reguestAnimationFrame(callback) in loop</li>
+<li>set interface function(closure) for requestAnimationFrame <br/> 👍RefCell< T > and the Interior Mutablilly Pattern<br/> After the first requestAnimationFrame call, the closure is disappointed</li>
+<li>requestAnimationFrame(interface function for callback) in first</li>
+<li>callback → Closure::wrap(Box::new(|_time:f64|())) 
 <li>game update</li>
 <li>game draw</li>
-<li>set interface function(closure) for MouseEvent at MouseDown<br/>unsafe {Game.on_click}</li>
+<li>requestAnimationFrame(interface function for callback) in loop</li>
+<li>set interface function(closure) for MouseEvent at MouseDown</li>
+<li>canvas.add_event_listener_with_callback("moudsedown")</li>
 <li>forget() to keep interface function(closure)👍</li>
 <li>MouseEvent(callback)</li>
 <li>game set click position</li>
