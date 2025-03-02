@@ -14,7 +14,7 @@ Programming mini game for Demo in Rust & WebAssembly
   * Click Circle: Get number and start
 
 ### Requirement
-  * Rust, Cargo
+  * Rust(2021), Cargo
   * WASM
 
 ### How to Build & Run
